@@ -3,16 +3,17 @@
 import random
 import tree_branches as tb
 import numpy as np
-
-class Create_var:
-    def __init__(self,min,max):
+var_list = []
+class Variable_class:
+    def __init__(self):
         #sending the value
         # the custom default value
-        self.min = min
-        self.max = max
+
         self.value = None
         self.prev_value =None
         #self.temp_value = None
+
+
 
     def make_change(self, value):
 
@@ -37,10 +38,21 @@ class Create_var:
         #will return the prevoius value
         return self.prev_value
 
-    def init_random_values(self, **kwargs):
+    def assign_rand(self, **kwargs):
         self.rnd_seed = kwargs.get('seed',None)
         random.seed(self.rnd_seed)
-        self.value = random.randint(self.min,self.max)
+        self.value = random.randint(self.min_v,self.max_v)
+
+
+class Create_var(Variable_class):
+
+    def __init__(self,min_v,max_v):
+        self.min_v = min_v
+        self.max_v = max_v
+        self.var =Variable_class()
+
+        var_list.append(self.var)
+
 
 
 

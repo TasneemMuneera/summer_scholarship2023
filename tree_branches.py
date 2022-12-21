@@ -1,5 +1,9 @@
 class Create_sum():
-    pass
+    def __init__(self, sum_lst):
+        self.sum_lst = sum_lst
+        self.prev_value = None
+        self.current_value = None
+        self.future_value = None
 
 
 
