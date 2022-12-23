@@ -1,11 +1,12 @@
 class Create_sum():
     def __init__(self, sum_lst):
-        self.sum_lst = sum_lst
+        self.wrk_lst = sum_lst
         self.prev_value = None
         self.current_value = None
         self.future_value = None
 
-
+class Create_product(Create_sum):
+    pass
 
 
 # def calc_sum(sum_list =[]):
