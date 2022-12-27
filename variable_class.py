@@ -5,6 +5,7 @@ import tree_branches as tb
 import numpy as np
 var_list = []
 updated_vars =[]
+
 class Variable_class:
     def __init__(self):
         #sending the value
@@ -39,6 +40,7 @@ class Variable_class:
 class Create_var(Variable_class):
 
     def __init__(self,min_v,max_v):
+        self.dep = []
         self.min_v = min_v
         self.max_v = max_v
         self.var =Variable_class()
@@ -54,7 +56,13 @@ class Create_var(Variable_class):
         self.var._rand(self.min_v, self.max_v)
         updated_vars.append(self.var)
     def get_current_value(self):
-       return self.var._current_value()
+       return int(self.var._current_value())
+
+    def dependents(self,lst):
+
+        self.dep.append(lst)
+
+
 
 
 

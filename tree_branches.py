@@ -1,12 +1,42 @@
-class Create_sum():
+from variable_class import *
+class Create_exp():
     def __init__(self, sum_lst):
-        self.wrk_lst = sum_lst
+        self.parameters = sum_lst
         self.prev_value = None
-        self.current_value = None
+        self.current_value = 0
         self.future_value = None
+        for i in range(len(sum_lst)):
+                self.parameters[i].dependents(self)
+                #print(self.parameters[i].get_current_value())
+                #self.current_value = self.parameters[i].get_current_value() + self.current_value
+                #print(type(self.parameters[i].get_current_value()))
+                #print(type(self.current_value))
 
-class Create_product(Create_sum):
-    pass
+    def clc_value(self):
+        pass
+
+class Create_sum(Create_exp):
+
+    def clc_value(self):
+        for v in range(len(self.parameters)):
+            self.current_value = self.parameters[v].get_current_value() + self.current_value
+        return self.current_value
+
+
+        #return self.current_value
+
+class Create_product(Create_exp):
+
+    def clc_value(self):
+        self.current_value =1
+        for v in range(len(self.parameters)):
+            self.current_value = self.parameters[v].get_current_value() * self.current_value
+        return self.current_value
+
+
+
+
+
 
 
 # def calc_sum(sum_list =[]):
