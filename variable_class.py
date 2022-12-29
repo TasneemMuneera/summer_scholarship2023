@@ -48,7 +48,10 @@ class Create_var(Variable_class):
         var_list.append(self.var)
     def update_var(self,v):
         self.var._make_change(v)
-        updated_vars.append(self.var)
+        for i in range(len(updated_vars)):
+            if updated_vars[i] == self.var:
+                updated_vars[i] = self.var
+
 
     def assign_rands(self, **kwargs):
         self.rnd_seed = kwargs.get('seed', None)

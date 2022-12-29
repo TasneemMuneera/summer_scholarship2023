@@ -7,13 +7,13 @@ class Create_exp():
         self.future_value = None
         for i in range(len(sum_lst)):
                 self.parameters[i].dependents(self)
-                #print(self.parameters[i].get_current_value())
-                #self.current_value = self.parameters[i].get_current_value() + self.current_value
-                #print(type(self.parameters[i].get_current_value()))
-                #print(type(self.current_value))
+
+
 
     def clc_value(self):
         pass
+    def get_current_value(self):
+        return self.current_value
 
 class Create_sum(Create_exp):
 
