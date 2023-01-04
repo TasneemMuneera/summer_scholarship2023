@@ -10,11 +10,11 @@ class Create_exp():
 
 
 
-    def clc_value(self):
+    def _clc_value(self):
         pass
     def get_current_value(self):
         return self.current_value
-    def update_value(self):
+    def _update_value(self):
         pass
 
 
@@ -22,13 +22,13 @@ class Create_exp():
 
 class Create_sum(Create_exp):
 
-    def clc_value(self):
+    def _clc_value(self):
         self.current_value =0
         for v in range(len(self.parameters)):
             self.current_value = self.parameters[v].get_current_value() + self.current_value
         return self.current_value
 
-    def update_value(self):
+    def _update_value(self):
         self.prev_value = self.current_value
         #global updated_vars
         for v in  range(len(updated_vars)):
@@ -43,13 +43,13 @@ class Create_sum(Create_exp):
 
 class Create_product(Create_exp):
 
-    def clc_value(self):
+    def _clc_value(self):
         self.current_value =1
         for v in range(len(self.parameters)):
             self.current_value = self.parameters[v].get_current_value() * self.current_value
         return self.current_value
 
-    def update_value(self):
+    def _update_value(self):
         self.prev_value = self.current_value
         # global updated_vars
         for v in range(len(updated_vars)):
@@ -64,12 +64,12 @@ def update_tree():
     global updated_vars
     for  u in updated_vars:
         for d in u.dep:
-            d.update_value()
-def calc_tree():
+            d._update_value()
+def init_tree():
     global var_list
     for v in var_list:
         for item in v.dep:
-            item.clc_value()
+            item._clc_value()
 
 
 # def calc_sum(sum_list =[]):

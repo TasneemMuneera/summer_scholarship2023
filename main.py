@@ -1,6 +1,6 @@
 from variable_class import *
 from tree_branches import *
-import funcs as f
+
 #test
 #
 v0=Create_var(8,67)
@@ -18,7 +18,8 @@ v2.assign_rands(seed =6)
 
 a=Create_sum([v0,v1])
 b=Create_product([v2,v1,v0])
-calc_tree()
+init_tree()
+
 #print(a.get_current_value())
 v1.update_var(10)
 # print(v1.get_current_value())
