@@ -3,7 +3,7 @@ class Create_exp():
     def __init__(self, sum_lst):
         self.parameters = sum_lst
         self.prev_value = 0
-        self.current_value = 0
+        self.current_value = None
 
         for i in range(len(sum_lst)):
                 self.parameters[i].dependents(self)
@@ -23,6 +23,7 @@ class Create_exp():
 class Create_sum(Create_exp):
 
     def clc_value(self):
+        self.current_value =0
         for v in range(len(self.parameters)):
             self.current_value = self.parameters[v].get_current_value() + self.current_value
         return self.current_value
