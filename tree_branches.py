@@ -4,7 +4,7 @@ class Create_exp():
         self.parameters = sum_lst
         self.prev_value = 0
         self.current_value = 0
-        #self.future_value = 0
+
         for i in range(len(sum_lst)):
                 self.parameters[i].dependents(self)
 
@@ -16,6 +16,9 @@ class Create_exp():
         return self.current_value
     def update_value(self):
         pass
+
+
+
 
 class Create_sum(Create_exp):
 
@@ -56,7 +59,16 @@ class Create_product(Create_exp):
 
 
 
-
+def update_tree():
+    global updated_vars
+    for  u in updated_vars:
+        for d in u.dep:
+            d.update_value()
+def calc_tree():
+    global var_list
+    for v in var_list:
+        for item in v.dep:
+            item.clc_value()
 
 
 # def calc_sum(sum_list =[]):
