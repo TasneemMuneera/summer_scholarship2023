@@ -18,10 +18,16 @@ v2.assign_rands(seed =6)
 
 a=Create_sum([v0,v1])
 b=Create_product([v2,v1,v0])
+c=Create_sum([a,b])
+# e=Create_sum([a,c])
+# d=Create_product([c,e])
 init_tree()
-
-#print(a.get_current_value())
-v1.update_var(10)
+# print(a.get_current_value())
+# print(b.get_current_value())
+# print(c.get_current_value())
+# print(e.get_current_value())
+# print(d.get_current_value())
+#v1.update_var(10)
 # print(v1.get_current_value())
 # #print(updated_vars)
 # print(a.update_value())
@@ -34,10 +40,11 @@ v1.update_var(10)
 # print(b)
 # print(v0.dep)
 # print(v1.dep)
-update_tree()
-
-print(a.get_current_value())
-print(b.get_current_value())
+# update_tree()
+# #
+# print(a.get_current_value())
+# print(b.get_current_value())
+# print(c.get_current_value())
 
 
 

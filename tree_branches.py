@@ -1,12 +1,15 @@
 from variable_class import *
+exps=[]
 class Create_exp():
     def __init__(self, sum_lst):
         self.parameters = sum_lst
         self.prev_value = 0
         self.current_value = None
+        self.nodes =[]
 
         for i in range(len(sum_lst)):
                 self.parameters[i].dependents(self)
+        exps.append(self)
 
 
 
@@ -16,6 +19,9 @@ class Create_exp():
         return self.current_value
     def _update_value(self):
         pass
+    def dependents(self,lst):
+
+        self.nodes.append(lst)
 
 
 
@@ -65,42 +71,21 @@ def update_tree():
     for  u in updated_vars:
         for d in u.dep:
             d._update_value()
+
+
+
+
+
 def init_tree():
     global var_list
     for v in var_list:
         for item in v.dep:
             item._clc_value()
+    for e in exps:
+        e._clc_value()
 
 
-# def calc_sum(sum_list =[]):
-#  # you have to give your chosen values as a list
-#   total_sum = 0
-#   for i in range(len(sum_list)):
-#     total_sum = total_sum + sum_list[i]
-#
-#   return total_sum
-#
-# def update_sum(current_sum,old_list, new_list ):
-#     for i in range(len(old_list)):
-#         current_sum = current_sum - old_list[i] + new_list[i]
-#
-#     return current_sum
-# def compare (value, const):
-#     if value != const:
-#         if value > const:
-#             a= value - const
-#             print('exceeded by {}'.format(a))
-#
-#         else:
-#             a = const -value
-#             print('short by {}'.format(a))
-#         return False
-#
-#
-#     else:
-#         print('equal')
-#         return True
-#
+
 
 
 
