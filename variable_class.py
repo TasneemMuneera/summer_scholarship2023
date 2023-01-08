@@ -13,32 +13,30 @@ class Create_var:
         self.dep = []
         self.min_v = min_v
         self.max_v = max_v
-        self.var =self
 
-        #var_list.append(self.var)
+
+
     def update_var(self,v):
         global updated_vars
-        self.var._make_change(v)
-        updated_vars.append(self.var)
+        self._make_change(v)
+        updated_vars.append(self)
         for i in range(len(updated_vars)):
-            if updated_vars[i] == self.var:
-                updated_vars[i] = self.var
+            if updated_vars[i] == self:
+                updated_vars[i] = self
 
         updated_vars = list(set(updated_vars))
-
-
 
 
 
     def assign_rands(self, **kwargs):
         self.rnd_seed = kwargs.get('seed', None)
         random.seed(self.rnd_seed)
-        self.var._rand(self.min_v, self.max_v)
-        var_list.append(self.var)
+        self._rand(self.min_v, self.max_v)
+        var_list.append(self)
     def get_current_value(self):
-       return int(self.var._current_value())
+       return int(self._current_value())
     def get_prev_value(self):
-        return int(self.var._prev_value())
+        return int(self._prev_value())
 
     def dependents(self,lst):
 
