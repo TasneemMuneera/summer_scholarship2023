@@ -18,6 +18,8 @@ class Create_exp():
         pass
     def get_current_value(self):
         return self.current_value
+    def get_prev_value(self):
+        return self.prev_value
     def _update_value(self):
         pass
     def dependents(self,lst):
@@ -37,11 +39,18 @@ class Create_sum(Create_exp):
 
     def _update_value(self):
         global updated_nodes
+        global updated_vars
         self.prev_value = self.current_value
         #global updated_vars
-        for v in  range(len(updated_vars)): #parameters: check which value is changed in the params: only work on that
-            self.current_value = self.current_value + updated_vars[v].get_current_value() - updated_vars[v].get_prev_value()
-        if self.current_value != self.prev_value:
+        flag =0
+        for i in range(len(self.parameters)):
+            if self.parameters[i] in updated_vars or updated_nodes:
+
+                self.current_value = self.current_value + self.parameters[i].get_current_value() - self.parameters[i].get_prev_value()
+                flag =1
+
+
+        if flag ==0 :
             updated_nodes.append(self)
 
 
@@ -49,9 +58,6 @@ class Create_sum(Create_exp):
         return self.current_value
 
 
-
-
-        #return self.current_value
 
 class Create_product(Create_exp):
 
@@ -65,9 +71,12 @@ class Create_product(Create_exp):
         global updated_nodes
         self.prev_value = self.current_value
         # global updated_vars
-        for v in range(len(updated_vars)):
-            self.current_value = int(self.current_value * updated_vars[v].get_current_value() / updated_vars[v].get_prev_value())
-        if self.current_value != self.prev_value:
+        f=0
+        for i in range(len(self.parameters)):
+            if self.parameters[i].get_prev_value() != 0 :
+                self.current_value = int(self.current_value * self.parameters[i].get_current_value() / self.parameters[i].get_prev_value())
+                f=1
+        if f==0 or self.current_value!=self.prev_value:
             updated_nodes.append(self)
 
 
@@ -78,9 +87,12 @@ class Create_product(Create_exp):
 
 def update_tree():
     global updated_vars
+    flag =0
     for  u in updated_vars:
         for d in u.dep:
             d._update_value()
+
+
 
     for n in updated_nodes:
         for b in n.dep_nodes:
