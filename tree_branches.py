@@ -12,7 +12,7 @@ class Create_exp():
                 self.parameters[i].dependents(self)
         exps.append(self)
 
-
+#level will be 1 + the max of the levels of the parameters
 
     def _clc_value(self):
         pass
@@ -27,8 +27,6 @@ class Create_exp():
         self.dep_nodes.append(lst)
 
 
-
-
 class Create_sum(Create_exp):
 
     def _clc_value(self):
@@ -37,21 +35,27 @@ class Create_sum(Create_exp):
             self.current_value = self.parameters[v].get_current_value() + self.current_value
         return self.current_value
 
+    ##This is the function we need to fix
+
     def _update_value(self):
         global updated_nodes
-        global updated_vars
+
         self.prev_value = self.current_value
         #global updated_vars
-        flag =0
+
         for i in range(len(self.parameters)):
-            if self.parameters[i] in updated_vars or updated_nodes:
+
+            if self.parameters[i] in updated_vars or self.parameters[i] in updated_nodes :
+
+                print("param {}".format(id(self.parameters[i])))
 
                 self.current_value = self.current_value + self.parameters[i].get_current_value() - self.parameters[i].get_prev_value()
-                flag =1
 
 
-        if flag ==0 :
-            updated_nodes.append(self)
+        if self.current_value!=self.prev_value:
+            for n in self.dep_nodes:
+                if n  not in updated_nodes:
+                    updated_nodes.append(n)
 
 
 
@@ -68,15 +72,15 @@ class Create_product(Create_exp):
         return self.current_value
 
     def _update_value(self):
+
         global updated_nodes
         self.prev_value = self.current_value
-        # global updated_vars
-        f=0
+
         for i in range(len(self.parameters)):
-            if self.parameters[i].get_prev_value() != 0 :
+            if self.parameters[i] in updated_vars or updated_nodes and self.parameters[i].get_prev_value() !=0:
                 self.current_value = int(self.current_value * self.parameters[i].get_current_value() / self.parameters[i].get_prev_value())
-                f=1
-        if f==0 or self.current_value!=self.prev_value:
+
+        if self.current_value!=self.prev_value:
             updated_nodes.append(self)
 
 
@@ -87,19 +91,23 @@ class Create_product(Create_exp):
 
 def update_tree():
     global updated_vars
-    flag =0
+
     for  u in updated_vars:
-        for d in u.dep:
-            d._update_value()
+        for n in u.dep:
+            if n not in updated_nodes:
+                updated_nodes.append(n)
 
 
 
     for n in updated_nodes:
-        for b in n.dep_nodes:
-            b._update_value()
+#iterate it level by level
+#each node each list : 2d array
+        #for b in n.dep_nodes:
+            print(id(n))
+            n._update_value()
 
 
-
+    #clear updated_vars and nodes
 
 
 

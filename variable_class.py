@@ -1,7 +1,9 @@
 #considering the bottom leaf nodes
 #keeps the properties of the variables
+
 import random
 import numpy as np
+from queue import PriorityQueue
 var_list = []
 updated_vars =[]
 
@@ -13,6 +15,7 @@ class Create_var:
         self.dep = []
         self.min_v = min_v
         self.max_v = max_v
+        self.level = 0
 
 
 
