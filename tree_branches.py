@@ -47,8 +47,6 @@ class Create_sum(Create_exp):
 
             if self.parameters[i] in updated_vars or self.parameters[i] in updated_nodes :
 
-                print("param {}".format(id(self.parameters[i])))
-
                 self.current_value = self.current_value + self.parameters[i].get_current_value() - self.parameters[i].get_prev_value()
 
 
@@ -57,11 +55,7 @@ class Create_sum(Create_exp):
                 if n  not in updated_nodes:
                     updated_nodes.append(n)
 
-
-
         return self.current_value
-
-
 
 class Create_product(Create_exp):
 
@@ -77,12 +71,13 @@ class Create_product(Create_exp):
         self.prev_value = self.current_value
 
         for i in range(len(self.parameters)):
-            if self.parameters[i] in updated_vars or updated_nodes and self.parameters[i].get_prev_value() !=0:
+            if self.parameters[i] in updated_vars or self.parameters[i] in updated_nodes and self.parameters[i].get_prev_value() !=0:
                 self.current_value = int(self.current_value * self.parameters[i].get_current_value() / self.parameters[i].get_prev_value())
 
         if self.current_value!=self.prev_value:
-            updated_nodes.append(self)
-
+            for n in self.dep_nodes:
+                if n  not in updated_nodes:
+                    updated_nodes.append(n)
 
         return self.current_value
 
@@ -97,19 +92,16 @@ def update_tree():
             if n not in updated_nodes:
                 updated_nodes.append(n)
 
-
-
     for n in updated_nodes:
 #iterate it level by level
 #each node each list : 2d array
         #for b in n.dep_nodes:
-            print(id(n))
             n._update_value()
 
 
     #clear updated_vars and nodes
-
-
+    updated_vars.clear()
+    updated_nodes.clear()
 
 def init_tree():
     global var_list
