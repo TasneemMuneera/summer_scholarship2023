@@ -7,10 +7,19 @@ class Create_exp():
         self.prev_value = 0
         self.current_value = 0
         self.dep_nodes =[]
-
-        for i in range(len(sum_lst)):
+        self.level = None
+        h_v=-1
+        for i in range(len(self.parameters)):
                 self.parameters[i].dependents(self)
+                #check the highest level of the parameters
+                if self.parameters[i].level>h_v:
+                    h_v=self.parameters[i].level
+
+
+
         exps.append(self)
+        self.level = 1+h_v
+
 
 #level will be 1 + the max of the levels of the parameters
 
