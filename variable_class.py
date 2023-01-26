@@ -6,7 +6,7 @@ import numpy as np
 from queue import PriorityQueue
 var_list = []
 updated_vars =[]
-
+clock_vars =0
 class Create_var:
 
     def __init__(self,min_v,max_v):
@@ -16,19 +16,16 @@ class Create_var:
         self.min_v = min_v
         self.max_v = max_v
         self.level = 0
+        self.clock  = -1
 
 
 
     def update_var(self,v):
         global updated_vars
         self._make_change(v)
-        updated_vars.append(self)
-        for i in range(len(updated_vars)):
-            if updated_vars[i] == self:
-                updated_vars[i] = self
-
-        updated_vars = list(set(updated_vars))
-
+        #check the clock global and node
+        if self.clock==clock_vars:
+            updated_vars.append(self)
 
 
     def assign_rands(self, **kwargs):
@@ -49,9 +46,13 @@ class Create_var:
 
 
     def _make_change(self, value):
+        global clock_vars
 
         self.prev_value = self.value
         self.value = value
+        self.clock = self.clock +1
+        clock_vars = self.clock
+        #clock reset issue check: how many times
 
 
 

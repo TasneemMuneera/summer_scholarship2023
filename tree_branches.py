@@ -15,8 +15,6 @@ class Create_exp():
                 if self.parameters[i].level>h_v:
                     h_v=self.parameters[i].level
 
-
-
         exps.append(self)
         self.level = 1+h_v
 
@@ -44,8 +42,8 @@ class Create_sum(Create_exp):
             self.current_value = self.parameters[v].get_current_value() + self.current_value
         return self.current_value
 
-    ##This is the function we need to fix
-
+#global clock 0
+#node clock -1
     def _update_value(self):
         global updated_nodes
 
