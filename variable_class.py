@@ -52,7 +52,10 @@ class Create_var:
         self.value = value
         self.clock = self.clock +1
         clock_vars = self.clock
+
+        #ask
         #clock reset issue check: how many times
+
 
 
 

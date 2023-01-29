@@ -76,7 +76,7 @@ print(f.get_current_value())
 #second time
 v0.update_var(5)
 v1.update_var(5)
-v2.update_var(5)
+
 update_tree()
 print("Second time update:\n")
 print(a.get_current_value())
@@ -87,7 +87,7 @@ print(e.get_current_value())
 print(f.get_current_value())
 v0.update_var(1)
 v1.update_var(1)
-v2.update_var(1)
+
 update_tree()
 print("third time update:\n")
 print(a.get_current_value())
