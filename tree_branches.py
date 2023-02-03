@@ -58,16 +58,15 @@ class Create_sum(Create_exp):
 
         for i in range(len(self.parameters)):
 
-            if self.parameters[i] in updated_vars :
+            if self.parameters[i] in updated_vars or self.parameters[i] in updated_nodes :
 
                 self.current_value = self.current_value + self.parameters[i].get_current_value() - self.parameters[i].get_prev_value()
 
 
-        #
-        # if self.current_value!=self.prev_value:
-        #     for n in self.dep_nodes:
-        #         if n  not in updated_nodes:
-        #             updated_nodes.append(n)
+        if self.current_value!=self.prev_value:
+            for n in self.dep_nodes:
+                if n  not in updated_nodes:
+                    updated_nodes.append(n)
 
         return self.current_value
 
@@ -100,17 +99,22 @@ class Create_product(Create_exp):
 
 def update_tree():
     global updated_vars
-
+    global level_queue
     for  u in updated_vars:
         for n in u.dep:
             if n not in updated_nodes:
                 updated_nodes.append(n)
 
-    for n in updated_nodes:
+
+    for sub_list in level_queue:
+        for item in sub_list:
+            if item in updated_nodes:
+                item._update_value()
+
 #iterate it level by level
 #each node each list : 2d array
         #for b in n.dep_nodes:
-            n._update_value()
+       #n._update_value()
 
 
     #clear updated_vars and nodes
@@ -124,7 +128,7 @@ def init_tree():
 
         for item in v.dep:
             item._clc_value()
-        a[v] = v.level
+
     for e in exps:
         e._clc_value()
 
@@ -138,7 +142,7 @@ def init_tree():
 
     # Using a list comprehension to convert the values of the second dictionary into a 2D list
     level_queue = [[key for key in keys] for keys in d.values()]
-    print(level_queue)
+    #print(level_queue)
 
 
 
