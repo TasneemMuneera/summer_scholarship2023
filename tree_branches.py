@@ -1,6 +1,10 @@
 from variable_class import *
+import array as arr
 exps=[]
 updated_nodes =[]
+a ={}
+
+
 class Create_exp():
     def __init__(self, sum_lst):
         self.parameters = sum_lst
@@ -17,6 +21,8 @@ class Create_exp():
 
         exps.append(self)
         self.level = 1+h_v
+
+
 
 
 #level will be 1 + the max of the levels of the parameters
@@ -46,21 +52,22 @@ class Create_sum(Create_exp):
 #node clock -1
     def _update_value(self):
         global updated_nodes
+        global updated_vars
 
         self.prev_value = self.current_value
-        #global updated_vars
 
         for i in range(len(self.parameters)):
 
-            if self.parameters[i] in updated_vars or self.parameters[i] in updated_nodes :
+            if self.parameters[i] in updated_vars :
 
                 self.current_value = self.current_value + self.parameters[i].get_current_value() - self.parameters[i].get_prev_value()
 
 
-        if self.current_value!=self.prev_value:
-            for n in self.dep_nodes:
-                if n  not in updated_nodes:
-                    updated_nodes.append(n)
+        #
+        # if self.current_value!=self.prev_value:
+        #     for n in self.dep_nodes:
+        #         if n  not in updated_nodes:
+        #             updated_nodes.append(n)
 
         return self.current_value
 
@@ -112,11 +119,40 @@ def update_tree():
 
 def init_tree():
     global var_list
+    global level_queue
     for v in var_list:
+
         for item in v.dep:
             item._clc_value()
+        a[v] = v.level
     for e in exps:
         e._clc_value()
+
+        a[e] = e.level
+
+    d = {}
+    for key, value in a.items():
+        if value not in d:
+            d[value] = []
+        d[value].append(key)
+
+    # Using a list comprehension to convert the values of the second dictionary into a 2D list
+    level_queue = [[key for key in keys] for keys in d.values()]
+    print(level_queue)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
