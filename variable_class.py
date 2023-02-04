@@ -2,8 +2,7 @@
 #keeps the properties of the variables
 
 import random
-import numpy as np
-from queue import PriorityQueue
+
 var_list = []
 updated_vars =[]
 clock_vars =0
