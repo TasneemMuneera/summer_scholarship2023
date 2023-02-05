@@ -29,6 +29,7 @@ class Create_var:
 
     def assign_rands(self, **kwargs):
         self.rnd_seed = kwargs.get('seed', None)
+
         random.seed(self.rnd_seed)
         self._rand(self.min_v, self.max_v)
         var_list.append(self)
