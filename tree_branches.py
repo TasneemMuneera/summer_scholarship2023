@@ -70,6 +70,8 @@ class Create_sum(Create_exp):
 
         return self.current_value
 
+
+
 class Create_product(Create_exp):
 
     def _clc_value(self):
@@ -122,6 +124,7 @@ def update_tree():
     updated_nodes.clear()
 
 def init_tree():
+    #
     global var_list
     global level_queue
     for v in var_list:
@@ -129,8 +132,8 @@ def init_tree():
         for item in v.dep:
             item._clc_value()
 
+
     for e in exps:
-        e._clc_value()
 
         a[e] = e.level
 
@@ -139,10 +142,14 @@ def init_tree():
         if value not in d:
             d[value] = []
         d[value].append(key)
-
+    #print(d)
     # Using a list comprehension to convert the values of the second dictionary into a 2D list
     level_queue = [[key for key in keys] for keys in d.values()]
     #print(level_queue)
+    # calculate it by level
+    for sub_list in level_queue:
+        for item in sub_list:
+                item._clc_value()
 
 
 
