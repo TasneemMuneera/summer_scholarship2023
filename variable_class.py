@@ -28,10 +28,15 @@ class Create_var:
 
 
     def assign_rands(self, **kwargs):
+        #assign random value to the variable within the given range
         self.rnd_seed = kwargs.get('seed', None)
 
         random.seed(self.rnd_seed)
         self._rand(self.min_v, self.max_v)
+        var_list.append(self)
+    def assign_cust_val(self, cust_value):
+        #assigns custom value to the variable
+        self.value = cust_value
         var_list.append(self)
     def get_current_value(self):
        return int(self._current_value())
@@ -39,6 +44,7 @@ class Create_var:
         return int(self._prev_value())
 
     def dependents(self,lst):
+        #stores the variables that are its dependents
 
         self.dep.append(lst)
 
@@ -46,16 +52,13 @@ class Create_var:
 
 
     def _make_change(self, value):
+        #The skeleton of update_value function
         global clock_vars
 
         self.prev_value = self.value
         self.value = value
         self.clock = self.clock +1
         clock_vars = self.clock
-
-        #ask
-        #clock reset issue check: how many times
-
 
 
 
@@ -68,6 +71,7 @@ class Create_var:
         return self.prev_value
 
     def _rand(self,min,max):
+        #the skeleton of assign rand function
 
         self.value = random.randint(min,max)
 

@@ -1,5 +1,6 @@
 from variable_class import *
 import array as arr
+import random
 exps=[]
 updated_nodes =[]
 a ={}
@@ -98,7 +99,6 @@ class Create_product(Create_exp):
 
 
 
-
 def update_tree():
     global updated_vars
     global level_queue
@@ -107,16 +107,11 @@ def update_tree():
             if n not in updated_nodes:
                 updated_nodes.append(n)
 
-
+    # iterate it level by level
     for sub_list in level_queue:
         for item in sub_list:
             if item in updated_nodes:
                 item._update_value()
-
-#iterate it level by level
-#each node each list : 2d array
-        #for b in n.dep_nodes:
-       #n._update_value()
 
 
     #clear updated_vars and nodes
@@ -127,14 +122,15 @@ def init_tree():
     #
     global var_list
     global level_queue
+
+    #calculating the values of the variables
     for v in var_list:
 
         for item in v.dep:
             item._clc_value()
 
-
+   #technique to store values in a 2d array according to their level
     for e in exps:
-
         a[e] = e.level
 
     d = {}
@@ -142,10 +138,10 @@ def init_tree():
         if value not in d:
             d[value] = []
         d[value].append(key)
-    #print(d)
-    # Using a list comprehension to convert the values of the second dictionary into a 2D list
+
+    #level_queue stores the nodes according to its level
     level_queue = [[key for key in keys] for keys in d.values()]
-    #print(level_queue)
+
     # calculate it by level
     for sub_list in level_queue:
         for item in sub_list:
@@ -154,6 +150,34 @@ def init_tree():
 
 
 
+
+def _check_all_values(nodes,cnst):
+    #it checks if all the values are equal to the desired constant value
+    for node in nodes:
+        if  node.get_current_value()!= cnst:
+            return False
+    return True
+
+def _var_update(vars,min,max):
+      # swap two values of the random variables
+      #randomly chosen which two by the index
+
+        i = random.randint(min-1,max-1)
+        j = random.randint(min-1,max-1)
+        temp = vars[i].get_current_value()
+        vars[i].update_var(vars[j].get_current_value())
+        vars[j].update_var(temp)
+
+
+def rnd_walk(nodes,vars,cnst,min, max,steps):
+    #The random walk search algorithm
+    for i in range(steps):
+        if _check_all_values(nodes,cnst):
+            print("solved")
+            break
+        else:
+            _var_update(vars,min,max)
+            update_tree()
 
 
 

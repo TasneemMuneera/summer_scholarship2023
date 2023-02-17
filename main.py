@@ -1,100 +1,47 @@
 from variable_class import *
 from tree_branches import *
+import random
+#test magic square 3x3
+#vars
+v=[]
 
-#test
-#
-v0=Create_var(1,5)
-v1=Create_var(1,5)
-v2= Create_var(1,5)
-v0.assign_rands(seed=6)
-v1.assign_rands(seed=6)
-v2.assign_rands(seed =6)
-# print(v0.get_current_value())
-# print(v1.get_current_value())
-# print(v2.get_current_value())
-# print(var_list[0].get_current_value())
-# print(var_list[1].get_current_value())
-# print(var_list[2].get_current_value())
+for i in range(9):
+    v.append(Create_var(1,9))
+for i in range(9):
+    v[i].assign_cust_val(i+1)
 
-a=Create_product([v0,v1])
-b=Create_product([v2,v1,v0])
-c=Create_sum([a,b])
-d=Create_product([b,c])
-e=Create_product([b,c,d])
-f=Create_sum([v0,b,d,e])
-# # d=Create_product([c,e])
-# print(id(a))
-# print(id(b))
-# print(id(c))
-print("\nInitialise tree: \n")
+
+#random.shuffle(v)
+
+for i in range(9):
+    print(v[i].get_current_value())
+
+a=Create_sum([v[0],v[1],v[2]])
+b=Create_sum([v[3],v[4],v[5]])
+c=Create_sum([v[6],v[7],v[8]])
+d=Create_sum([v[0],v[3],v[6]])
+e=Create_sum([v[1],v[4],v[7]])
+f=Create_sum([v[2],v[5],v[8]])
+g=Create_sum([v[0],v[4],v[8]])
+h=Create_sum([v[2],v[4],v[6]])
 init_tree()
-print(a.get_current_value())
-print(b.get_current_value())
-print(c.get_current_value())
-# print(exps)
-# print(level_queue)
-print(d.get_current_value())
-print(e.get_current_value())
-print(f.get_current_value())
-print("\nNode levels: \n")
-print(a.level)
-print(b.level)
-print(c.level)
-print(d.level)
-print(e.level)
-print(f.level)
-v0.update_var(2)
-v1.update_var(10)
-v2.update_var(2)
+rnd_walk([a,b,c,d,e,f,g,h],v,15,1,9,10000)
+#change propagation
+#hill climbing, or any greedy algorthm implementation
+print("After random walk\n")
+print("independents \n")
+for i in range(9):
 
-# print(v1.get_current_value())
-#print(updated_vars)
-# print(a.update_value())
-
-#print(v1.get_current_value())
-#print(updated_vars)
-#print(a.update_value())
-# print(b.get_current_value())
-# print(a)
-# print(b)
-#print(v0.dep)
-#print(v1.dep)
-update_tree()
-# #
-#print(updated_nodes)
-# print(a)
-# print(b)
-# print(a.dep_nodes)
-# print(b.dep_nodes)
-# print(c)
-print("After update:\n")
+    print(v[i].get_current_value())
+print("nodes\n")
 print(a.get_current_value())
 print(b.get_current_value())
 print(c.get_current_value())
 print(d.get_current_value())
 print(e.get_current_value())
 print(f.get_current_value())
+print(g.get_current_value())
+print(h.get_current_value())
 
-# #second time
-# v0.update_var(5)
-# v1.update_var(5)
-# #
-# update_tree()
-# print("Second time update:\n")
-# print(a.get_current_value())
-# print(b.get_current_value())
-# print(c.get_current_value())
-# print(d.get_current_value())
-# print(e.get_current_value())
-# print(f.get_current_value())
-# v0.update_var(1)
-# v1.update_var(1)
-#
-# update_tree()
-# print("third time update:\n")
-# print(a.get_current_value())
-# print(b.get_current_value())
-# print(c.get_current_value())
-# print(d.get_current_value())
-# print(e.get_current_value())
-# print(f.get_current_value())
+
+
