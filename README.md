@@ -12,5 +12,5 @@ Other than these three, a main branch is here for a readme file for the descript
 ### Master branch:
 This branch is consists of the first version of the project. We have created the search propagation tree for N numbers of independent variables and the nodes dependent of them.
 
-A search propagation tree can be created by initialising the independent variables. A user can initialise the variables by assigning random values of a given range. Later, there are "Create_sum()" and "Create_product()" expression classes so that the user have the option to create the tree by using only sum, only product or a mixture of them. 
+A search propagation tree can be created by initialising the independent variables. A user can initialise the variables by assigning random values of a given range. Later, there are "Create_sum()" and "Create_product()" expression classes so that the user have the option to create the tree by using only sum, only product or a mixture of them. An example of search propagation tree is shown in Figure: 1.
 
