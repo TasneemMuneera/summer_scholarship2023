@@ -14,3 +14,6 @@ This branch is consists of the first version of the project. We have created the
 
 A search propagation tree can be created by initialising the independent variables. A user can initialise the variables by assigning random values of a given range. Later, there are "Create_sum()" and "Create_product()" expression classes so that the user have the option to create the tree by using only sum, only product or a mixture of them. An example of search propagation tree is shown in Figure: 1.
 
+<p align="center">
+<img src="331434010_1258854395046835_4817167728494435071_n.jpg" width="400" height="400">
+</p>
