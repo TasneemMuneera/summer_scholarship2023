@@ -28,4 +28,7 @@ Figure 1: Search Propagation Tree
 ### 2nd_version :
 In this version, we have fixed the first issue of the Master branch by assigning a global clock and self-clock for the variables. Each time, if a variable is updated or not can be known by comparing the clocks. By doing this, now it can update as many variables as we need and as many times. Moreover,  to solve the second issue of the Master branch, we have assigned levels to each node and variable. But the total issue is not solved in this branch. 
 
+### third_version :
+
+
 
