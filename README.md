@@ -1,6 +1,6 @@
 # A constraint-based local search library for Python
 
-We have tried to create a local search library written in python with an aim of solving puzzle problems (eg: Magic-square , N-queen, etc.).  This library is not written to solve only a specific problem, rather it's written generally for all the puzzle problems. Due to the limitation of time, we have only showed an example of solving Magic-square based on random-walk search algorthim with our library. This project can be further developed by adding more features and search algorithms (eg: hill-climbing) in future. 
+We have tried to create a local search library written in python with an aim of solving puzzle problems (eg: Magic-square , N-queen, etc.).  This library is not written to solve only a specific problem, rather it's written generally for all the puzzle problems. Due to the limitation of time, we have only showed an example of solving a 3x3 Magic-square based on random-walk search algorthim with our library. This project can be further developed by adding more features and search algorithms (eg: hill-climbing) in future. 
 
 Currently, this repository has three versions on three branches. 
 - Master
@@ -29,6 +29,8 @@ Figure 1: Search Propagation Tree
 In this version, we have fixed the first issue of the Master branch by assigning a global clock and self-clock for the variables. Each time, if a variable is updated or not can be known by comparing the clocks. By doing this, now it can update as many variables as we need and as many times. Moreover,  to solve the second issue of the Master branch, we have assigned levels to each node and variable. But the total issue is not solved in this branch. 
 
 ### third_version :
+Here, we have totally fixed the update issue by assigning level by level in a 2d_array. Now, it can update properly even if the parameters of a node are sitting on different levels and we can update the tree by changing variables as much as we need. 
+After that, we have written random-walk search algorithm and showed an example of solving 3x3 Magic_square. 
 
 
 
