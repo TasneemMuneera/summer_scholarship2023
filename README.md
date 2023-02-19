@@ -22,4 +22,10 @@ Figure 1: Search Propagation Tree
 </p>
 
 #### Issues: 
-This version of the project successfully generated the search propagation tree with the ability to update the tree, but here we can update the tree by changing only one independent. Moreover, the change is not permanent for the update. Therefore, if we update an independent again, it will update its value based on the values that were used for the initialisation of the tree. It will not change its value based on the first update. Besides, this version only works when the upper nodes of the tree only depend on parameters that are just below them. If the upper nodes are dependent on the parameters that are not on the same level, the update function becomes faulty, because we did not assign any levels when creating the tree for this version. As a result, when it is time to update, the parameters do not maintain sequence. 
+- This version of the project successfully generated the search propagation tree with the ability to update the tree, but here we can update the tree by changing only one independent. Moreover, the change is not permanent for the update. Therefore, if we update an independent again, it will update its value based on the values that were used for the initialisation of the tree. It will not change its value based on the first update. 
+- This version only works when the upper nodes of the tree only depend on parameters that are just below them. If the upper nodes are dependent on the parameters that are not on the same level, the update function becomes faulty, because we did not assign any levels when creating the tree for this version. As a result, when it is time to update, the parameters do not maintain sequence. 
+
+### 2nd_version :
+In this version, we have fixed the first issue of the Master branch by assigning a global clock and self-clock for the variables. Each time, if a variable is updated or not can be known by comparing the clocks. By doing this, now it can update as many variables as we need and as many times. Moreover,  to solve the second issue of the Master branch, we have assigned levels to each node and variable. But the total issue is not solved in this branch. 
+
+
