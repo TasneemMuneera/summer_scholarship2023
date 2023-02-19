@@ -17,3 +17,9 @@ A search propagation tree can be created by initialising the independent variabl
 <p align="center">
 <img src="331434010_1258854395046835_4817167728494435071_n.jpg" width="400" height="400">
 </p>
+<p align ="center">
+Figure 1: Search Propagation Tree
+</p>
+
+### Issues: 
+This version of the project successfully generated the search propagation tree with the ability to update the tree, but here we can update the tree by changing only one independent. Moreover, the change is not permanent for the update. Therefore, if we update an independent again, it will update its value based on the values that were used for the initialisation of the tree. It will not change its value based on the first update. Besides, this version only works when the upper nodes of the tree only depend on parameters that are just below them. If the upper nodes are dependent on the parameters that are not on the same level, the update function becomes faulty, because we did not assign any levels when creating the tree for this version. As a result, when it is time to update, the parameters do not maintain sequence. 
